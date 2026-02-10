@@ -66,10 +66,16 @@
             --border-radius-xl: 24px;
             --border-radius-2xl: 32px;
             
-            /* Layout */
+            /* Layout - CORRIGIDO */
             --header-height: 80px;
             --container-max: 1280px;
-            --section-padding: clamp(3rem, 5vw, 6rem);
+            --section-padding: clamp(2rem, 5vw, 4rem);
+            
+            /* Responsive breakpoints */
+            --bp-mobile: 480px;
+            --bp-tablet: 768px;
+            --bp-desktop: 1024px;
+            --bp-wide: 1200px;
         }
 
         html {
@@ -98,7 +104,7 @@
         }
 
         h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-size: clamp(2rem, 5vw, 3.5rem);
             background: linear-gradient(135deg, var(--primary-700), var(--primary-400));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -107,7 +113,7 @@
         }
 
         h2 {
-            font-size: clamp(2rem, 4vw, 3rem);
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
             position: relative;
             display: inline-block;
         }
@@ -151,21 +157,24 @@
             max-width: 48ch;
         }
 
-        /* ===== LAYOUT ===== */
+        /* ===== LAYOUT CORRIGIDO ===== */
         .container {
             width: 100%;
             max-width: var(--container-max);
             margin: 0 auto;
             padding: 0 clamp(1rem, 4vw, 2rem);
+            position: relative;
         }
 
         section {
             padding: var(--section-padding) 0;
             position: relative;
+            overflow: hidden; /* Previne sobreposição */
         }
 
         .section-header {
-            margin-bottom: clamp(2rem, 4vw, 4rem);
+            margin-bottom: clamp(1.5rem, 3vw, 3rem);
+            width: 100%;
         }
 
         .section-header.center {
@@ -178,10 +187,10 @@
             align-items: center;
             justify-content: center;
             gap: 0.75rem;
-            padding: clamp(0.875rem, 2vw, 1.125rem) clamp(1.5rem, 3vw, 2.5rem);
+            padding: clamp(0.75rem, 2vw, 1rem) clamp(1.25rem, 3vw, 2rem);
             font-family: var(--font-heading);
             font-weight: 600;
-            font-size: clamp(1rem, 1.5vw, 1.125rem);
+            font-size: clamp(0.875rem, 1.5vw, 1rem);
             line-height: 1;
             border-radius: var(--border-radius-lg);
             border: none;
@@ -192,6 +201,8 @@
             overflow: hidden;
             isolation: isolate;
             white-space: nowrap;
+            width: auto;
+            min-width: max-content;
         }
 
         .btn:before {
@@ -238,16 +249,17 @@
             flex-wrap: wrap;
             gap: 1rem;
             margin-top: 2rem;
+            width: 100%;
         }
 
-        /* ===== HEADER ===== */
+        /* ===== HEADER CORRIGIDO ===== */
         header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: var(--header-height);
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(0, 0, 0, 0.05);
@@ -265,6 +277,7 @@
             align-items: center;
             justify-content: space-between;
             height: 100%;
+            gap: 1rem;
         }
 
         .logo {
@@ -273,9 +286,10 @@
             gap: 0.75rem;
             text-decoration: none;
             font-weight: 800;
-            font-size: clamp(1.25rem, 2vw, 1.5rem);
+            font-size: clamp(1rem, 2vw, 1.25rem);
             color: var(--primary-700);
             transition: transform var(--transition-base);
+            flex-shrink: 0;
         }
 
         .logo:hover {
@@ -283,14 +297,14 @@
         }
 
         .logo-icon {
-            font-size: 2rem;
+            font-size: 1.5rem;
             color: var(--primary-500);
         }
 
         .nav-links {
             display: flex;
             align-items: center;
-            gap: clamp(1.5rem, 3vw, 3rem);
+            gap: clamp(1rem, 2vw, 2rem);
             list-style: none;
         }
 
@@ -298,10 +312,11 @@
             text-decoration: none;
             color: var(--neutral-700);
             font-weight: 500;
-            font-size: 1rem;
+            font-size: clamp(0.875rem, 1vw, 1rem);
             transition: color var(--transition-base);
             position: relative;
             padding: 0.5rem 0;
+            white-space: nowrap;
         }
 
         .nav-links a:after {
@@ -329,16 +344,17 @@
             display: none;
             background: none;
             border: none;
-            font-size: 1.75rem;
+            font-size: 1.5rem;
             color: var(--primary-600);
             cursor: pointer;
             padding: 0.5rem;
+            z-index: 1001;
         }
 
-        /* ===== HERO SECTION ===== */
+        /* ===== HERO SECTION CORRIGIDA ===== */
         .hero {
-            padding-top: calc(var(--header-height) + 4rem);
-            padding-bottom: 6rem;
+            padding-top: calc(var(--header-height) + 2rem);
+            padding-bottom: 4rem;
             background: linear-gradient(135deg, 
                 rgba(224, 242, 241, 0.4) 0%, 
                 rgba(232, 245, 233, 0.6) 100%);
@@ -369,16 +385,16 @@
         .hero-bg:before {
             top: -20%;
             right: -10%;
-            width: 60%;
-            height: 60%;
+            width: clamp(200px, 40vw, 400px);
+            height: clamp(200px, 40vw, 400px);
             animation: float 20s ease-in-out infinite;
         }
 
         .hero-bg:after {
             bottom: -30%;
             left: -10%;
-            width: 70%;
-            height: 70%;
+            width: clamp(250px, 50vw, 500px);
+            height: clamp(250px, 50vw, 500px);
             animation: float 25s ease-in-out infinite reverse;
         }
 
@@ -386,23 +402,26 @@
             position: relative;
             z-index: 1;
             max-width: 800px;
+            width: 100%;
         }
 
         .hero-stats {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1.5rem;
-            margin-top: 3rem;
+            gap: 1rem;
+            margin-top: 2rem;
+            width: 100%;
         }
 
         .stat-card {
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(10px);
             border-radius: var(--border-radius-lg);
             padding: 1.5rem;
             text-align: center;
             border: 1px solid rgba(0, 105, 92, 0.1);
             transition: transform var(--transition-base), box-shadow var(--transition-base);
+            width: 100%;
         }
 
         .stat-card:hover {
@@ -412,7 +431,7 @@
 
         .stat-value {
             display: block;
-            font-size: 2.5rem;
+            font-size: clamp(1.75rem, 3vw, 2.5rem);
             font-weight: 800;
             color: var(--primary-600);
             line-height: 1;
@@ -427,23 +446,25 @@
             letter-spacing: 0.05em;
         }
 
-        /* ===== DASHBOARD ===== */
+        /* ===== DASHBOARD CORRIGIDO ===== */
         .dashboard-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: clamp(1.5rem, 3vw, 2.5rem);
+            grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+            gap: clamp(1rem, 2vw, 1.5rem);
             margin-top: 2rem;
+            width: 100%;
         }
 
         .dashboard-card {
             background: white;
             border-radius: var(--border-radius-xl);
-            padding: 2rem;
+            padding: clamp(1.5rem, 3vw, 2rem);
             box-shadow: var(--shadow-md);
             border: 1px solid var(--neutral-200);
             transition: all var(--transition-base);
             position: relative;
             overflow: hidden;
+            width: 100%;
         }
 
         .dashboard-card:before {
@@ -457,8 +478,8 @@
         }
 
         .dashboard-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-xl);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
         }
 
         .card-header {
@@ -469,43 +490,64 @@
         }
 
         .card-icon {
-            width: 56px;
-            height: 56px;
+            width: clamp(48px, 4vw, 56px);
+            height: clamp(48px, 4vw, 56px);
             border-radius: var(--border-radius-md);
             background: linear-gradient(135deg, var(--primary-500), var(--primary-300));
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
+            font-size: clamp(1.25rem, 2vw, 1.5rem);
             color: white;
+            flex-shrink: 0;
         }
 
         .card-value {
-            font-size: 2.5rem;
+            font-size: clamp(1.75rem, 3vw, 2.5rem);
             font-weight: 800;
             color: var(--primary-700);
             line-height: 1;
             margin: 1rem 0;
         }
 
-        /* ===== CALCULATOR ===== */
+        /* ===== CALCULATOR SECTION CORRIGIDA ===== */
         .calculator-container {
             background: white;
             border-radius: var(--border-radius-xl);
-            padding: clamp(2rem, 4vw, 3rem);
+            padding: clamp(1.5rem, 3vw, 2rem);
             box-shadow: var(--shadow-lg);
             border: 1px solid var(--neutral-200);
+            width: 100%;
+            overflow: hidden;
         }
 
         .calculator-tabs {
             display: flex;
             gap: 0.5rem;
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem;
             flex-wrap: wrap;
+            width: 100%;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .calculator-tabs::-webkit-scrollbar {
+            height: 4px;
+        }
+
+        .calculator-tabs::-webkit-scrollbar-track {
+            background: var(--neutral-100);
+            border-radius: 2px;
+        }
+
+        .calculator-tabs::-webkit-scrollbar-thumb {
+            background: var(--primary-300);
+            border-radius: 2px;
         }
 
         .tab-btn {
-            padding: 1rem 1.5rem;
+            padding: clamp(0.75rem, 2vw, 1rem) clamp(1rem, 2vw, 1.5rem);
             background: var(--neutral-100);
             border: none;
             border-radius: var(--border-radius-md);
@@ -515,8 +557,10 @@
             transition: all var(--transition-base);
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: 0.5rem;
             white-space: nowrap;
+            flex-shrink: 0;
+            min-height: 44px; /* Touch target */
         }
 
         .tab-btn.active {
@@ -533,6 +577,7 @@
         .tab-content {
             display: none;
             animation: fadeIn 0.3s ease;
+            width: 100%;
         }
 
         .tab-content.active {
@@ -546,20 +591,24 @@
 
         .form-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+            gap: clamp(1rem, 2vw, 1.5rem);
             margin-bottom: 2rem;
+            width: 100%;
         }
 
         .form-section {
             background: var(--neutral-50);
             border-radius: var(--border-radius-lg);
-            padding: 2rem;
+            padding: clamp(1.5rem, 2vw, 2rem);
             border: 1px solid var(--neutral-200);
+            width: 100%;
+            height: fit-content;
         }
 
         .form-group {
-            margin-bottom: 1.75rem;
+            margin-bottom: 1.5rem;
+            width: 100%;
         }
 
         .form-group label {
@@ -567,17 +616,20 @@
             margin-bottom: 0.75rem;
             font-weight: 600;
             color: var(--neutral-800);
-            font-size: 1rem;
+            font-size: clamp(0.875rem, 1.5vw, 1rem);
+            width: 100%;
         }
 
         .form-control {
             width: 100%;
-            padding: 1rem;
+            padding: clamp(0.875rem, 1.5vw, 1rem);
             border: 2px solid var(--neutral-300);
             border-radius: var(--border-radius-md);
-            font-size: 1rem;
+            font-size: clamp(0.875rem, 1.5vw, 1rem);
             transition: all var(--transition-base);
             background: white;
+            -webkit-appearance: none;
+            appearance: none;
         }
 
         .form-control:focus {
@@ -588,6 +640,8 @@
 
         .slider-container {
             margin-top: 0.5rem;
+            width: 100%;
+            padding: 0 0.25rem;
         }
 
         .slider {
@@ -602,8 +656,8 @@
 
         .slider::-webkit-slider-thumb {
             -webkit-appearance: none;
-            width: 24px;
-            height: 24px;
+            width: clamp(20px, 3vw, 24px);
+            height: clamp(20px, 3vw, 24px);
             border-radius: 50%;
             background: var(--primary-600);
             cursor: pointer;
@@ -613,7 +667,7 @@
         }
 
         .slider::-webkit-slider-thumb:hover {
-            transform: scale(1.2);
+            transform: scale(1.1);
             box-shadow: var(--shadow-md);
         }
 
@@ -626,20 +680,23 @@
             border-radius: 20px;
             font-size: 0.875rem;
             margin-top: 0.5rem;
+            clear: both;
         }
 
         .form-footer {
             text-align: center;
-            margin-top: 3rem;
-            padding-top: 2.5rem;
+            margin-top: 2rem;
+            padding-top: 2rem;
             border-top: 2px solid var(--neutral-200);
+            width: 100%;
         }
 
-        /* ===== RESULTS PANEL ===== */
+        /* ===== RESULTS PANEL CORRIGIDO ===== */
         .results-panel {
             display: none;
-            margin-top: 3rem;
+            margin-top: 2rem;
             animation: slideInUp 0.5s ease;
+            width: 100%;
         }
 
         .results-panel.active {
@@ -660,12 +717,13 @@
         .results-header {
             background: linear-gradient(135deg, var(--primary-600), var(--primary-400));
             border-radius: var(--border-radius-xl);
-            padding: 3rem;
+            padding: clamp(2rem, 4vw, 3rem);
             color: white;
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
             position: relative;
             overflow: hidden;
+            width: 100%;
         }
 
         .results-header:before {
@@ -680,7 +738,7 @@
         }
 
         .total-score {
-            font-size: clamp(3rem, 8vw, 5rem);
+            font-size: clamp(2.5rem, 6vw, 4rem);
             font-weight: 900;
             line-height: 1;
             margin-bottom: 0.5rem;
@@ -692,31 +750,35 @@
             background: rgba(255, 255, 255, 0.2);
             border-radius: 50px;
             font-weight: 600;
-            font-size: 1rem;
+            font-size: clamp(0.875rem, 1.5vw, 1rem);
             margin-top: 1rem;
             backdrop-filter: blur(10px);
         }
 
-        /* ===== CHARTS ===== */
+        /* ===== CHARTS CORRIGIDOS ===== */
         .charts-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
+            grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+            gap: clamp(1rem, 2vw, 1.5rem);
+            margin: 2rem 0;
+            width: 100%;
         }
 
         .chart-wrapper {
             background: white;
             border-radius: var(--border-radius-lg);
-            padding: 2rem;
+            padding: clamp(1.5rem, 2vw, 2rem);
             box-shadow: var(--shadow-md);
             border: 1px solid var(--neutral-200);
+            width: 100%;
+            height: fit-content;
         }
 
         .chart {
-            height: 300px;
+            height: clamp(250px, 40vh, 300px);
             position: relative;
             margin-top: 1rem;
+            width: 100%;
         }
 
         .bar-chart {
@@ -725,11 +787,14 @@
             justify-content: space-around;
             height: 100%;
             padding: 1rem 0;
-            gap: 1rem;
+            gap: clamp(0.5rem, 1vw, 1rem);
+            width: 100%;
+            overflow-x: auto;
         }
 
         .bar {
             flex: 1;
+            min-width: clamp(40px, 8vw, 60px);
             max-width: 80px;
             background: linear-gradient(to top, var(--primary-500), var(--primary-300));
             border-radius: 8px 8px 0 0;
@@ -744,9 +809,12 @@
             left: 0;
             width: 100%;
             text-align: center;
-            font-size: 0.875rem;
+            font-size: clamp(0.75rem, 1.5vw, 0.875rem);
             color: var(--neutral-600);
             font-weight: 500;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .bar-value {
@@ -757,25 +825,28 @@
             text-align: center;
             font-weight: 600;
             color: var(--primary-600);
-            font-size: 0.875rem;
+            font-size: clamp(0.75rem, 1.5vw, 0.875rem);
         }
 
-        /* ===== RECOMMENDATIONS ===== */
+        /* ===== RECOMMENDATIONS CORRIGIDO ===== */
         .recommendations-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+            gap: clamp(1rem, 2vw, 1.5rem);
             margin-top: 2rem;
+            width: 100%;
         }
 
         .recommendation-card {
             background: white;
             border-radius: var(--border-radius-lg);
-            padding: 2rem;
+            padding: clamp(1.5rem, 2vw, 2rem);
             box-shadow: var(--shadow-md);
             border: 1px solid var(--neutral-200);
             border-left: 4px solid var(--primary-500);
             transition: transform var(--transition-base);
+            width: 100%;
+            height: fit-content;
         }
 
         .recommendation-card:hover {
@@ -783,7 +854,7 @@
         }
 
         .rec-icon {
-            font-size: 2.5rem;
+            font-size: clamp(2rem, 4vw, 2.5rem);
             margin-bottom: 1rem;
             color: var(--primary-500);
         }
@@ -799,14 +870,15 @@
             margin-top: 1rem;
         }
 
-        /* ===== SCIENTIFIC REFERENCE ===== */
+        /* ===== SCIENTIFIC REFERENCE CORRIGIDO ===== */
         .reference-section {
             background: linear-gradient(135deg, var(--primary-50), var(--neutral-100));
             border-radius: var(--border-radius-xl);
-            padding: 3rem;
-            margin-top: 4rem;
+            padding: clamp(2rem, 4vw, 3rem);
+            margin-top: 3rem;
             position: relative;
             overflow: hidden;
+            width: 100%;
         }
 
         .reference-section:before {
@@ -814,60 +886,108 @@
             position: absolute;
             top: 0;
             right: 0;
-            width: 200px;
-            height: 200px;
+            width: clamp(150px, 30vw, 200px);
+            height: clamp(150px, 30vw, 200px);
             background: linear-gradient(135deg, rgba(0, 105, 92, 0.1), transparent);
             border-radius: 50%;
-            transform: translate(50px, -50px);
+            transform: translate(clamp(30px, 10vw, 50px), clamp(-30px, -10vw, -50px));
         }
 
         .reference-content {
             position: relative;
             z-index: 1;
+            width: 100%;
         }
 
         .reference-item {
             display: flex;
+            flex-direction: column;
             gap: 1rem;
             margin-bottom: 1.5rem;
-            padding: 1.5rem;
-            background: rgba(255, 255, 255, 0.7);
+            padding: clamp(1rem, 2vw, 1.5rem);
+            background: rgba(255, 255, 255, 0.9);
             border-radius: var(--border-radius-lg);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(0, 105, 92, 0.1);
+            width: 100%;
+        }
+
+        @media (min-width: 768px) {
+            .reference-item {
+                flex-direction: row;
+            }
         }
 
         .reference-icon {
             flex-shrink: 0;
-            width: 48px;
-            height: 48px;
+            width: clamp(40px, 6vw, 48px);
+            height: clamp(40px, 6vw, 48px);
             background: var(--primary-500);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 1.25rem;
+            font-size: clamp(1rem, 2vw, 1.25rem);
         }
 
-        /* ===== FOOTER ===== */
+        /* ===== CREDITS SECTION ===== */
+        .credits-section {
+            background: linear-gradient(135deg, var(--neutral-900), var(--neutral-800));
+            color: white;
+            padding: clamp(2rem, 4vw, 3rem) 0;
+            text-align: center;
+        }
+
+        .credits-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 clamp(1rem, 4vw, 2rem);
+        }
+
+        .credits-logo {
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: var(--primary-400);
+            margin-bottom: 1.5rem;
+        }
+
+        .student-names {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .student-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius-lg);
+            padding: 1.5rem;
+            min-width: 200px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* ===== FOOTER CORRIGIDO ===== */
         footer {
             background: linear-gradient(135deg, var(--primary-900), var(--primary-700));
             color: white;
-            padding: 4rem 0 2rem;
-            margin-top: 4rem;
+            padding: clamp(3rem, 5vw, 4rem) 0 clamp(1.5rem, 3vw, 2rem);
+            margin-top: 0;
+            width: 100%;
         }
 
         .footer-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 3rem;
-            margin-bottom: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+            gap: clamp(2rem, 4vw, 3rem);
+            margin-bottom: clamp(2rem, 4vw, 3rem);
+            width: 100%;
         }
 
         .footer-col h3 {
             color: white;
-            font-size: 1.25rem;
+            font-size: clamp(1.125rem, 2vw, 1.25rem);
             margin-bottom: 1.5rem;
         }
 
@@ -884,6 +1004,7 @@
             text-decoration: none;
             transition: color var(--transition-base);
             display: inline-block;
+            font-size: clamp(0.875rem, 1.5vw, 1rem);
         }
 
         .footer-links a:hover {
@@ -896,10 +1017,11 @@
             padding-top: 2rem;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             color: rgba(255, 255, 255, 0.6);
-            font-size: 0.875rem;
+            font-size: clamp(0.75rem, 1.5vw, 0.875rem);
+            width: 100%;
         }
 
-        /* ===== ANIMATIONS ===== */
+        /* ===== ANIMAÇÕES ===== */
         @keyframes float {
             0%, 100% { transform: translateY(0) rotate(0deg); }
             50% { transform: translateY(-20px) rotate(1deg); }
@@ -910,10 +1032,10 @@
             50% { opacity: 0.7; }
         }
 
-        /* ===== RESPONSIVIDADE ===== */
+        /* ===== RESPONSIVIDADE CORRIGIDA - SEM SOBREPOSIÇÃO ===== */
         @media (max-width: 1024px) {
             :root {
-                --section-padding: clamp(2.5rem, 4vw, 4rem);
+                --section-padding: clamp(1.5rem, 3vw, 2.5rem);
             }
             
             .nav-links {
@@ -931,6 +1053,7 @@
                 z-index: 999;
                 max-height: calc(100vh - var(--header-height));
                 overflow-y: auto;
+                gap: 1rem;
             }
             
             .nav-links.active {
@@ -945,6 +1068,23 @@
             .hero-stats {
                 grid-template-columns: repeat(2, 1fr);
             }
+            
+            .calculator-tabs {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                padding-bottom: 1rem;
+            }
+            
+            /* Garantir que nada sobreponha */
+            section, .container, .calculator-container, .results-panel {
+                position: relative;
+                z-index: 1;
+            }
+            
+            .hero-bg:before,
+            .hero-bg:after {
+                opacity: 0.5; /* Reduzir opacidade em mobile */
+            }
         }
 
         @media (max-width: 768px) {
@@ -953,8 +1093,8 @@
             }
             
             .hero {
-                padding-top: calc(var(--header-height) + 2rem);
-                padding-bottom: 4rem;
+                padding-top: calc(var(--header-height) + 1rem);
+                padding-bottom: 3rem;
             }
             
             .calculator-container {
@@ -962,16 +1102,16 @@
             }
             
             .results-header {
-                padding: 2rem 1rem;
+                padding: 1.5rem 1rem;
             }
             
             .form-grid {
                 grid-template-columns: 1fr;
-                gap: 1.5rem;
+                gap: 1rem;
             }
             
             .tab-btn {
-                flex: 1;
+                flex: 0 0 auto;
                 min-width: 120px;
                 justify-content: center;
             }
@@ -983,6 +1123,26 @@
             
             .btn {
                 width: 100%;
+            }
+            
+            /* Prevenir sobreposição em mobile */
+            .bar-chart {
+                padding: 0.5rem;
+                gap: 0.5rem;
+            }
+            
+            .bar {
+                min-width: 35px;
+            }
+            
+            .bar-label {
+                font-size: 0.7rem;
+                bottom: -25px;
+            }
+            
+            .bar-value {
+                font-size: 0.7rem;
+                top: -20px;
             }
         }
 
@@ -1005,15 +1165,24 @@
             }
             
             .chart {
-                height: 250px;
+                height: 200px;
             }
             
             .bar {
-                max-width: 60px;
+                min-width: 30px;
             }
             
             .total-score {
-                font-size: 3.5rem;
+                font-size: 2.5rem;
+            }
+            
+            .student-names {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .student-card {
+                width: 100%;
             }
         }
 
@@ -1036,6 +1205,11 @@
         .px-3 { padding-left: 1.5rem; padding-right: 1.5rem; }
         .px-4 { padding-left: 2rem; padding-right: 2rem; }
         .w-full { width: 100%; }
+        .d-block { display: block; }
+        .d-flex { display: flex; }
+        .flex-column { flex-direction: column; }
+        .align-items-center { align-items: center; }
+        .justify-content-center { justify-content: center; }
 
         /* ===== ACCESSIBILITY ===== */
         .sr-only {
@@ -1469,11 +1643,11 @@
                     </div>
                     
                     <div class="form-footer">
-                        <button type="submit" class="btn btn-primary" style="padding: 1.25rem 3rem;">
+                        <button type="submit" class="btn btn-primary" style="padding: 1rem 2.5rem;">
                             <i class="fas fa-calculator"></i>
                             <span>Calcular Análise Completa</span>
                         </button>
-                        <p class="mt-2" style="color: var(--neutral-600);">
+                        <p class="mt-2" style="color: var(--neutral-600); font-size: 0.875rem;">
                             <i class="fas fa-info-circle"></i>
                             Análise baseada em metodologia IPCC e fatores de emissão científicos
                         </p>
@@ -1509,7 +1683,7 @@
                     <!-- Recommendations -->
                     <div id="recommendations">
                         <h3 class="text-center">Recomendações Personalizadas</h3>
-                        <p class="text-center">Baseado em sua análise, estas ações podem reduzir sua pegada:</p>
+                        <p class="text-center" style="font-size: 1rem;">Baseado em sua análise, estas ações podem reduzir sua pegada:</p>
                         
                         <div class="recommendations-grid" id="recommendationsList">
                             <!-- Generated by JavaScript -->
@@ -1580,15 +1754,55 @@
                     </div>
                 </div>
                 
-                <div class="text-center mt-5">
-                    <div style="background: rgba(255, 255, 255, 0.9); padding: 2rem; border-radius: var(--border-radius-lg); border-left: 4px solid var(--primary-500);">
-                        <p style="font-style: italic; color: var(--neutral-800);">
+                <div class="text-center mt-4">
+                    <div style="background: rgba(255, 255, 255, 0.9); padding: 1.5rem; border-radius: var(--border-radius-lg); border-left: 4px solid var(--primary-500);">
+                        <p style="font-style: italic; color: var(--neutral-800); font-size: 1rem;">
                             "Esta ferramenta utiliza metodologia científica baseada no Sexto Relatório de Avaliação do IPCC (AR6) e incorpora os mais recentes avanços na ciência do clima. Todos os cálculos são transparentes, replicáveis e baseados em evidências científicas."
                         </p>
-                        <p class="mt-2" style="color: var(--primary-600); font-weight: 600;">
+                        <p class="mt-2" style="color: var(--primary-600); font-weight: 600; font-size: 0.875rem;">
                             — Baseado em dados científicos do IPCC, Global Carbon Project e Agência Internacional de Energia
                         </p>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Credits Section -->
+    <section class="credits-section" id="credits">
+        <div class="container">
+            <div class="credits-content">
+                <div class="credits-logo">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h2 style="color: white;">Projeto Acadêmico - Fundação Matias Machline</h2>
+                <p class="lead" style="color: rgba(255, 255, 255, 0.9);">
+                    Sistema desenvolvido como parte do projeto acadêmico de Educação Ambiental e Ciência da Computação
+                </p>
+                
+                <div class="student-names">
+                    <div class="student-card">
+                        <h4 style="color: var(--primary-300);">Gabriel Santos Zorzetti</h4>
+                        <p style="color: rgba(255, 255, 255, 0.8);">Desenvolvimento e Pesquisa Científica</p>
+                        <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.875rem;">Aluno - Fundação Matias Machline</p>
+                    </div>
+                    
+                    <div class="student-card">
+                        <h4 style="color: var(--primary-300);">Pedro Henrique Nascimento Pereira</h4>
+                        <p style="color: rgba(255, 255, 255, 0.8);">Interface e Análise de Dados</p>
+                        <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.875rem;">Aluno - Fundação Matias Machline</p>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(255, 255, 255, 0.1); border-radius: var(--border-radius-lg);">
+                    <h4 style="color: white;">Orientação Científica</h4>
+                    <p style="color: rgba(255, 255, 255, 0.8);">
+                        Este projeto foi desenvolvido sob orientação dos professores da Fundação Matias Machline, 
+                        com base em metodologias científicas reconhecidas internacionalmente para análise de pegada de carbono.
+                    </p>
+                    <p style="color: var(--primary-300); margin-top: 1rem; font-weight: 600;">
+                        Fundação Matias Machline · Manaus/AM · 2024
+                    </p>
                 </div>
             </div>
         </div>
@@ -1600,7 +1814,7 @@
             <div class="footer-content">
                 <div>
                     <h3>Carbon Analyst Pro</h3>
-                    <p style="color: rgba(255,255,255,0.8); margin-top: 1rem;">
+                    <p style="color: rgba(255,255,255,0.8); margin-top: 1rem; font-size: 0.875rem;">
                         Sistema científico de análise de pegada de carbono. 
                         Baseado em metodologia IPCC e dados científicos globais.
                     </p>
@@ -1629,19 +1843,23 @@
                 <div>
                     <h3>Desenvolvimento</h3>
                     <ul class="footer-links">
-                        <li><a href="#scientific-reference">Contribuição Científica</a></li>
-                        <li><a href="#scientific-reference">Publicações</a></li>
-                        <li><a href="#scientific-reference">Colaboração</a></li>
-                        <li><a href="#scientific-reference">Open Science</a></li>
+                        <li><a href="#credits">Créditos do Projeto</a></li>
+                        <li><a href="#credits">Equipe</a></li>
+                        <li><a href="#credits">Instituição</a></li>
+                        <li><a href="#scientific-reference">Metodologia</a></li>
                     </ul>
                 </div>
             </div>
             
             <div class="footer-bottom">
                 <p>© 2024 Carbon Analyst Pro | Sistema Científico de Análise de Pegada de Carbono</p>
-                <p style="margin-top: 0.5rem;">
+                <p style="margin-top: 0.5rem; font-size: 0.75rem;">
+                    Desenvolvido por Gabriel Santos Zorzetti e Pedro Henrique Nascimento Pereira · 
+                    Fundação Matias Machline · Manaus/AM
+                </p>
+                <p style="margin-top: 0.5rem; font-size: 0.75rem;">
                     Baseado em metodologia IPCC AR6 e dados científicos globais | 
-                    Desenvolvimento científico para ação climática
+                    Projeto Acadêmico de Educação Ambiental
                 </p>
             </div>
         </div>
@@ -1652,10 +1870,9 @@
         
         // Fatores de emissão baseados em IPCC e dados científicos
         const EMISSION_FACTORS = {
-            // Transporte (kg CO₂ por km)
             TRANSPORT: {
                 CAR: {
-                    electric: 0.0,     // Considerando grid atual
+                    electric: 0.0,
                     hybrid: 0.08,
                     small: 0.12,
                     medium: 0.18,
@@ -1663,30 +1880,28 @@
                     suv: 0.32
                 },
                 FUEL: {
-                    gasoline: 2.31,    // kg CO₂ por litro
+                    gasoline: 2.31,
                     ethanol: 1.51,
                     diesel: 2.68,
                     cng: 1.88
                 },
                 FLIGHTS: {
-                    short: 250,        // kg CO₂ por passageiro (voos < 3h)
-                    long: 800          // kg CO₂ por passageiro (voos > 3h)
+                    short: 250,
+                    long: 800
                 },
                 PUBLIC: {
-                    bus: 0.1,          // kg CO₂ por passageiro-km
+                    bus: 0.1,
                     metro: 0.05,
                     train: 0.03
                 }
             },
             
-            // Energia (kg CO₂ por kWh)
             ENERGY: {
-                gridMix: 0.5,          // Média global
+                gridMix: 0.5,
                 renewable: 0.05,
                 fossil: 0.9
             },
             
-            // Consumo (toneladas CO₂ equivalente por ano)
             CONSUMPTION: {
                 DIET: {
                     vegan: 1.5,
@@ -1697,7 +1912,7 @@
                     highMeat: 5.0
                 },
                 GOODS: {
-                    per1000BRL: 0.5    // ton CO₂ por R$1000
+                    per1000BRL: 0.5
                 }
             }
         };
@@ -1845,15 +2060,16 @@
             resultsPanel.classList.add('active');
             
             // Scroll para resultados
-            resultsPanel.scrollIntoView({ 
-                behavior: 'smooth', 
-                block: 'start' 
-            });
+            setTimeout(() => {
+                resultsPanel.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'start' 
+                });
+            }, 100);
         });
         
         function collectFormData() {
             return {
-                // Transporte
                 carType: document.getElementById('carType').value,
                 carDistance: parseInt(document.getElementById('carDistance').value),
                 fuelType: document.getElementById('fuelType').value,
@@ -1861,7 +2077,6 @@
                 flightsShort: parseInt(document.getElementById('flightsShort').value),
                 flightsLong: parseInt(document.getElementById('flightsLong').value),
                 
-                // Energia
                 electricity: parseInt(document.getElementById('electricity').value),
                 energySource: document.getElementById('energySource').value,
                 heating: document.getElementById('heating').value,
@@ -1869,7 +2084,6 @@
                 lighting: document.getElementById('lighting').value,
                 solar: document.getElementById('solar').value,
                 
-                // Consumo
                 diet: document.getElementById('diet').value,
                 foodWaste: document.getElementById('foodWaste').value,
                 foodOrigin: document.getElementById('foodOrigin').value,
@@ -1877,7 +2091,6 @@
                 electronics: document.getElementById('electronics').value,
                 clothing: document.getElementById('clothing').value,
                 
-                // Estilo de Vida
                 houseSize: document.getElementById('houseSize').value,
                 houseType: document.getElementById('houseType').value,
                 residents: parseInt(document.getElementById('residents').value),
@@ -1891,7 +2104,7 @@
             let emissions = 0;
             
             // Emissões do carro (baseado em consumo médio 15 km/L)
-            const fuelConsumption = data.carDistance / 15; // litros
+            const fuelConsumption = data.carDistance / 15;
             const fuelFactor = EMISSION_FACTORS.TRANSPORT.FUEL[data.fuelType] || 2.31;
             emissions += fuelConsumption * fuelFactor;
             
@@ -1902,20 +2115,18 @@
             // Transporte público (assumindo ônibus)
             emissions += data.publicTransport * 52 * EMISSION_FACTORS.TRANSPORT.PUBLIC.bus;
             
-            return emissions / 1000; // Converter para toneladas
+            return emissions / 1000;
         }
         
         function calculateEnergyEmissions(data) {
             let emissions = 0;
             
-            // Fatores de fonte de energia
             const sourceFactors = {
                 'renewable': EMISSION_FACTORS.ENERGY.renewable,
                 'mixed': EMISSION_FACTORS.ENERGY.gridMix,
                 'fossil': EMISSION_FACTORS.ENERGY.fossil
             };
             
-            // Consumo de eletricidade anual (kWh/mês * 12)
             const annualElectricity = data.electricity * 12;
             emissions += annualElectricity * sourceFactors[data.energySource];
             
@@ -1931,13 +2142,12 @@
             
             if (data.solar === 'yes') emissions *= 0.7;
             
-            return emissions / 1000; // Converter para toneladas
+            return emissions / 1000;
         }
         
         function calculateConsumptionEmissions(data) {
             let emissions = 0;
             
-            // Dieta
             const dietFactors = {
                 'vegan': 1.5,
                 'vegetarian': 1.8,
@@ -1948,7 +2158,6 @@
             };
             emissions += dietFactors[data.diet] || 2.7;
             
-            // Desperdício de alimentos
             const wasteFactors = {
                 'none': 0.9,
                 'low': 1,
@@ -1957,7 +2166,6 @@
             };
             emissions *= wasteFactors[data.foodWaste] || 1;
             
-            // Origem dos alimentos
             const originFactors = {
                 'local': 0.8,
                 'mixed': 1,
@@ -1965,11 +2173,9 @@
             };
             emissions *= originFactors[data.foodOrigin] || 1;
             
-            // Consumo de bens (R$ anual)
             const annualShopping = data.shopping * 12;
             emissions += (annualShopping / 1000) * 0.5;
             
-            // Eletrônicos
             const electronicFactors = {
                 'rare': 0.2,
                 'occasional': 0.5,
@@ -1978,7 +2184,6 @@
             };
             emissions += electronicFactors[data.electronics] || 0.5;
             
-            // Roupas
             const clothingFactors = {
                 'minimal': 0.3,
                 'moderate': 0.7,
@@ -1993,7 +2198,6 @@
         function calculateLifestyleEmissions(data) {
             let emissions = 0;
             
-            // Tamanho da casa
             const sizeFactors = {
                 'small': 1,
                 'medium': 1.5,
@@ -2002,7 +2206,6 @@
             };
             emissions += sizeFactors[data.houseSize] || 1.5;
             
-            // Tipo de construção
             const typeFactors = {
                 'efficient': 0.8,
                 'standard': 1,
@@ -2010,18 +2213,14 @@
             };
             emissions *= typeFactors[data.houseType] || 1;
             
-            // Dividir pelo número de residentes
             emissions /= data.residents || 3;
             
-            // Reciclagem reduz emissões
             const recyclingFactor = 1 - (data.recycling / 200);
             emissions *= recyclingFactor;
             
-            // Economia de água
             if (data.waterSaving === 'high') emissions *= 0.95;
             if (data.waterSaving === 'low') emissions *= 1.05;
             
-            // Jardim (pequena absorção)
             if (data.garden === 'large') emissions -= 0.3;
             
             return Math.max(emissions, 0);
@@ -2220,10 +2419,10 @@
                 card.innerHTML = `
                     <div class="rec-icon">${rec.icon}</div>
                     <h4>${rec.title}</h4>
-                    <p>${rec.description}</p>
+                    <p style="font-size: 0.875rem;">${rec.description}</p>
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem;">
-                        <span class="rec-impact" style="background: ${priorityColors[rec.priority]}">${rec.impact}</span>
-                        <span style="font-size: 0.875rem; color: ${priorityColors[rec.priority]}; font-weight: 600;">
+                        <span class="rec-impact" style="background: ${priorityColors[rec.priority]}; font-size: 0.75rem;">${rec.impact}</span>
+                        <span style="font-size: 0.75rem; color: ${priorityColors[rec.priority]}; font-weight: 600;">
                             Prioridade ${rec.priority}
                         </span>
                     </div>
@@ -2305,4 +2504,3 @@
     </script>
 </body>
 </html>
-

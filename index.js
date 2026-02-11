@@ -61,23 +61,6 @@ mobileToggle.addEventListener('click', () => {
         : '<i class="fas fa-bars"></i>';
 });
 
-//Teste
-  document.querySelectorAll(".menu a, .mobile-link").forEach((link) => {
-    link.addEventListener("click", (e) => {
-      const target = link.getAttribute("href");
-      if (!target || !target.startsWith("#")) return;
-
-      const section = document.querySelector(target);
-      if (!section) return;
-
-      e.preventDefault();
-      window.scrollTo({
-        top: section.offsetTop - 80,
-        behavior: "smooth",
-      });
-    });
-  });
-
 // Fechar menu ao clicar em um link
 document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', () => {

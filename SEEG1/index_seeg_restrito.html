@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carbon Analyst Pro | Sistema Científico de Análise de Pegada de Carbono</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="#home" class="logo">
+                    <i class="fas fa-leaf logo-icon"></i>
+                    <span>Carbon Analyst Pro</span>
+                </a>
+
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home" class="active">Dashboard</a></li>
+                    <li><a href="#dashboard">Métricas</a></li>
+                    <li><a href="#calculator">Calculadora</a></li>
+                    <li><a href="#results">Resultados</a></li>
+                    <li><a href="#recommendations">Recomendações</a></li>
+                </ul>
+
+                <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1>Análise Científica de Pegada de Carbono</h1>
+                <p class="lead">Calculadora baseada na metodologia do SEEG (Sistema de Estimativas de Emissões de Gases de Efeito Estufa), com fatores nacionais e estaduais.</p>
+
+                <div class="hero-stats">
+                    <div class="stat-card">
+                        <span class="stat-value">SEEG</span>
+                        <span class="stat-label">Base Brasil</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value">UF</span>
+                        <span class="stat-label">Fatores Estaduais</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value">tCO₂e</span>
+                        <span class="stat-label">Resultado Anual</span>
+                    </div>
+                </div>
+
+                <div class="btn-group">
+                    <a href="#calculator" class="btn btn-primary">
+                        <i class="fas fa-calculator"></i>
+                        <span>Calcular Pegada</span>
+                    </a>
+                    <a href="#dashboard" class="btn btn-secondary">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Ver Métricas</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Section (mantida) -->
+    <section class="dashboard" id="dashboard">
+        <div class="container">
+            <div class="section-header center">
+                <h2>Métricas Globais em Tempo Real</h2>
+                <p class="lead">Painel ilustrativo (não interfere no cálculo SEEG)</p>
+            </div>
+
+            <div class="dashboard-grid">
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-globe-americas"></i>
+                        </div>
+                        <div class="card-trend trend-up">
+                            <span>↑ 1.5%</span>
+                        </div>
+                    </div>
+                    <h3>Emissões Globais</h3>
+                    <div class="card-value">36.8 Gt</div>
+                    <p>Total de emissões de CO₂ em 2026 (indicativo).</p>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-thermometer-half"></i>
+                        </div>
+                        <div class="card-trend trend-up">
+                            <span>↑ 1.2°C</span>
+                        </div>
+                    </div>
+                    <h3>Aquecimento Global</h3>
+                    <div class="card-value">+1.2°C</div>
+                    <p>Incremento da temperatura média global desde a era pré-industrial.</p>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <div class="card-trend trend-down">
+                            <span>↓ 7.6 Gt/ano</span>
+                        </div>
+                    </div>
+                    <h3>Redução Necessária</h3>
+                    <div class="card-value">-7.6 Gt/ano</div>
+                    <p>Redução anual necessária para metas climáticas (indicativo).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section class="calculator" id="calculator">
+        <div class="container">
+            <div class="section-header center">
+                <h2>Calculadora SEEG (Pessoas)</h2>
+                <p class="lead">Perguntas e cálculos alinhados à planilha oficial SEEG Pessoas (tCO₂e/ano).</p>
+            </div>
+
+            <div class="calculator-container">
+                <div class="calculator-tabs">
+                    <button class="tab-btn active" data-tab="general">
+                        <i class="fas fa-clipboard-list"></i>
+                        <span>Geral</span>
+                    </button>
+                    <button class="tab-btn" data-tab="transport">
+                        <i class="fas fa-car"></i>
+                        <span>Transportes</span>
+                    </button>
+                    <button class="tab-btn" data-tab="energy">
+                        <i class="fas fa-bolt"></i>
+                        <span>Energia</span>
+                    </button>
+                    <button class="tab-btn" data-tab="land">
+                        <i class="fas fa-seedling"></i>
+                        <span>Alimentos & Florestas</span>
+                    </button>
+                    <button class="tab-btn" data-tab="waste">
+                        <i class="fas fa-recycle"></i>
+                        <span>Resíduos</span>
+                    </button>
+                </div>
+
+                <form id="carbonCalculator">
+                    <!-- General Tab -->
+                    <div class="tab-content active" id="general-tab">
+                        <div class="form-grid">
+                            <div class="form-section">
+                                <h4>Informações Gerais</h4>
+
+                                <div class="form-group">
+                                    <label for="state">Estado (UF)</label>
+                                    <select class="form-control" id="state">
+                                        <option value="AC">AC</option><option value="AL">AL</option><option value="AM" selected>AM</option><option value="AP">AP</option>
+                                        <option value="BA">BA</option><option value="CE">CE</option><option value="DF">DF</option><option value="ES">ES</option>
+                                        <option value="GO">GO</option><option value="MA">MA</option><option value="MG">MG</option><option value="MS">MS</option>
+                                        <option value="MT">MT</option><option value="PA">PA</option><option value="PB">PB</option><option value="PE">PE</option>
+                                        <option value="PI">PI</option><option value="PR">PR</option><option value="RJ">RJ</option><option value="RN">RN</option>
+                                        <option value="RO">RO</option><option value="RR">RR</option><option value="RS">RS</option><option value="SC">SC</option>
+                                        <option value="SE">SE</option><option value="SP">SP</option><option value="TO">TO</option>
+                                    </select>
+                                </div>
+
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Transport Tab -->
+                    <div class="tab-content" id="transport-tab">
+                        <div class="form-grid">
+                            <div class="form-section">
+                                <h4>Transporte</h4>
+
+                                <div class="form-group">
+                                    <label for="transportMode">Qual tipo de transporte você usa?</label>
+                                    <select class="form-control" id="transportMode">
+                                        <option value="privado" selected>Veículo privado</option>
+                                        <option value="publico">Transporte público</option>
+                                    </select>
+                                </div>
+
+                                <div id="privateTransportFields">
+                                    <div class="form-group">
+                                        <label for="gasoline">Consumo mensal de gasolina (litros/mês)</label>
+                                        <input class="form-control" id="gasoline" type="number" min="0" step="0.01" value="0">
+                                    </div>
+
+                                    <p style="margin-top: 1rem; font-size: 0.95rem;">
+                                        <i class="fas fa-info-circle"></i>
+                                        Veículo privado: a pergunta considera somente gasolina (IEMA – Inventário Rodoviário).
+                                    </p>
+                                </div>
+
+                                <div id="publicTransportFields" style="display:none;">
+                                    <div class="form-group">
+                                        <label for="publicKm">Quilometragem mensal em transporte público (km/mês)</label>
+                                        <input class="form-control" id="publicKm" type="number" min="0" step="1" value="0">
+                                    </div>
+
+                                    <p style="margin-top: 1rem; font-size: 0.95rem;">
+                                        <i class="fas fa-info-circle"></i>
+                                        Transporte público: informe a quilometragem mensal total.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Land Tab -->
+                    <div class="tab-content" id="land-tab">
+                        <div class="form-grid">
+                            <div class="form-section">
+                                <h4>Pecuária (consumo semanal)</h4>
+
+                                <div class="form-group">
+                                    <label for="beef">Carne bovina (kg/semana)</label>
+                                    <input class="form-control" id="beef" type="number" min="0" step="0.01" value="0">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="chicken">Carne de frango (kg/semana)</label>
+                                    <input class="form-control" id="chicken" type="number" min="0" step="0.01" value="0">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="pork">Carne suína (kg/semana)</label>
+                                    <input class="form-control" id="pork" type="number" min="0" step="0.01" value="0">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="milk">Leite de vaca (litros/semana)</label>
+                                    <input class="form-control" id="milk" type="number" min="0" step="0.01" value="0">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="eggs">Ovos (unidades/semana)</label>
+                                    <input class="form-control" id="eggs" type="number" min="0" step="1" value="0">
+                                </div>
+                            </div>
+
+                            <div class="form-section">
+                                <h4>Agricultura (consumo diário)</h4>
+
+                                <div class="form-group">
+                                    <label for="rice">Arroz (colheres de sopa/dia)</label>
+                                    <input class="form-control" id="rice" type="number" min="0" step="0.1" value="0">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="beans">Feijão (colheres de sopa/dia)</label>
+                                    <input class="form-control" id="beans" type="number" min="0" step="0.1" value="0">
+                                </div>
+
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Waste Tab -->
+                    <div class="tab-content" id="waste-tab">
+                        <div class="form-grid">
+                            <div class="form-section">
+                                <h4>Resíduos Sólidos</h4>
+
+                                <div class="form-group">
+                                    <label for="recycling">Você recicla seus resíduos, em especial o papel?</label>
+                                    <select class="form-control" id="recycling">
+                                        <option value="Sim" selected>Sim</option>
+                                        <option value="Não">Não</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="composting">Você composta seus resíduos orgânicos?</label>
+                                    <select class="form-control" id="composting">
+                                        <option value="Sim" selected>Sim</option>
+                                        <option value="Não">Não</option>
+                                    </select>
+                                </div>
+
+                                <p style="margin-top: 1rem; font-size: 0.95rem;">
+                                    <i class="fas fa-info-circle"></i>
+                                    O SEEG usa fatores estaduais per capita para efluentes e resíduos sólidos, com abatimentos por reciclagem/compostagem.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-footer">
+                        <button type="submit" class="btn btn-primary" style="padding: 1rem 2.5rem;">
+                            <i class="fas fa-calculator"></i>
+                            <span>Calcular (SEEG)</span>
+                        </button>
+                        <p class="mt-2" style="color: var(--neutral-600); font-size: 0.875rem;">
+                            <i class="fas fa-shield-alt"></i>
+                            Cálculo reproduz fórmulas e fatores da planilha SEEG Pessoas
+                        </p>
+                    </div>
+                </form>
+
+                <!-- Results Panel -->
+                <div class="results-panel" id="resultsPanel">
+                    <div class="results-header">
+                        <h3>Sua Pegada de Carbono</h3>
+                        <div class="total-score" id="totalScore">0.0</div>
+                        <div class="score-label">toneladas de CO₂ equivalente/ano</div>
+                        <div class="score-category" id="scoreCategory">-</div>
+                    </div>
+
+                    <!-- Charts -->
+                    <div class="charts-container">
+                        <div class="chart-wrapper">
+                            <h4>Distribuição por Categoria</h4>
+                            <div class="chart">
+                                <div class="bar-chart" id="categoryChart"></div>
+                            </div>
+                        </div>
+
+                        <div class="chart-wrapper">
+                            <h4>Comparativo (Referências)</h4>
+                            <div class="chart">
+                                <div class="bar-chart" id="comparisonChart"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recommendations -->
+                    <div id="recommendations">
+                        <h3 class="text-center">Recomendações</h3>
+                        <p class="text-center" style="font-size: 1rem;">Sugestões automáticas (ilustrativas) com base nos maiores blocos de emissão.</p>
+
+                        <div class="recommendations-grid" id="recommendationsList">
+                            <!-- Generated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <div class="form-footer">
+                        <button onclick="window.print()" class="btn btn-primary">
+                            <i class="fas fa-print"></i>
+                            <span>Exportar Relatório</span>
+                        </button>
+                        <button onclick="resetCalculator()" class="btn btn-secondary" style="margin-left: 1rem;">
+                            <i class="fas fa-redo"></i>
+                            <span>Nova Análise</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="index_seeg_restrito.js"></script>
+</body>
+</html>
